@@ -1,0 +1,27 @@
+package com.gameOfThrones.core.controllers;
+
+import com.github.tomakehurst.wiremock.common.ConsoleNotifier;
+import com.github.tomakehurst.wiremock.core.WireMockConfiguration;
+import com.github.tomakehurst.wiremock.junit.WireMockRule;
+import org.junit.Rule;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.test.web.servlet.MockMvc;
+
+/**
+ * Created by Evegeny on 21/12/2016.
+ */
+@AutoConfigureMockMvc
+public class MockMvcBaseTest {
+
+    @Autowired
+    public MockMvc mockMvc;
+
+    @Rule
+    public WireMockRule wireMockRule = new WireMockRule(
+            WireMockConfiguration.wireMockConfig()
+                    .port(12000)
+                    .notifier(new ConsoleNotifier(true))
+    );
+}
+
